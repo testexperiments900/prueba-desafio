@@ -1,4 +1,5 @@
 import express from "express";
+import { config } from "./src/utils/config.js";
 
 /* ---------------------- Instancia de servidor ----------------------*/
 const app = express();
@@ -20,8 +21,8 @@ app.get('*', (req, res) => {
 
 /* ---------------------- Servidor ----------------------*/
 
-const PORT = 3000
+const PORT = config.node.port || 3001;
 const server = app.listen(PORT, () => {
-    logger.info(`Servidor express escuchando en el puerto ${PORT}`);
+    console.log(`Servidor express escuchando en el puerto ${PORT}`);
 })
-server.on('error', error => logger.error(`Error en servidor: ${error}`))
+server.on('error', error => console.log(`Error en servidor: ${error}`))
